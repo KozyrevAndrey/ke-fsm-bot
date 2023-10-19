@@ -6,7 +6,7 @@ from aiogram import Dispatcher, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 
-from app.message_states import MessageState, CHANNEL_NAME
+from app.message_states import MessageState, CHANNEL_ID
 
 
 async def message1_stuff(message: types.Message):
@@ -33,8 +33,8 @@ async def message3_stuff(message: types.Message, state: FSMContext):
 async def send_info(message: types.Message, state: FSMContext):
     await state.update_data(message_group3=message.text)
     data = await state.get_data()
-    await message.bot.send_message(
-        CHANNEL_NAME,
+    await message.bot.send_message( 
+        CHANNEL_ID,
         f"Требуется замена на дату: <b>{data['message_group1']}</b>,\n\n"
         f"Адрес и номер ПВЗ: <b>{data['message_group2']}</b>,\n\n"
         f"Время на которое требуется замена: <b>{data['message_group3']}</b>,\n\n"

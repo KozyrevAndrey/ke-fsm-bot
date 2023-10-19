@@ -6,7 +6,7 @@ from aiogram import Dispatcher, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 
-from app.message_states import MessageState, CHANNEL_NAME
+from app.message_states import MessageState, CHANNEL_ID
 
 
 async def message_help1(message: types.Message):
@@ -34,7 +34,7 @@ async def send_help(message: types.Message, state: FSMContext):
     await state.update_data(group3=message.text)
     change_data = await state.get_data()
     await message.bot.send_message(
-        CHANNEL_NAME,
+        CHANNEL_ID,
         f"Требуется дополнительный сотрудник на дату: <b>{change_data['group1']}</b>,\n\n"
         f"Адрес и номер ПВЗ: <b>{change_data['group2']}</b>.\n\n"
         f"Время на которое требуется дополнительный сотрудник: <b>{change_data['group3']}</b>,\n\n"
